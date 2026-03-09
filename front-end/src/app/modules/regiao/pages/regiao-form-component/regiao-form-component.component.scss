@@ -1,0 +1,111 @@
+.btn-salvar {
+  background-color: #003354;
+  border: none;
+}
+
+.btn-salvar:hover {
+  background-color: #002641;
+  color: white;
+}
+
+.btn-light {
+  background-color: #e9ecef !important;
+}
+
+/* Container e Card Principal */
+.card-body.bg-white {
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(35, 62, 153, 0.08);
+  border: 1px solid #edf2f9;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Título dinâmico */
+h1.font-weight-bold {
+  color: #233e99; /* Mobiis Blue */
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+}
+
+h4.text-primary {
+  color: #233e99 !important;
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+/* Customização dos Campos do Angular Material */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #e0e6ed;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-dot {
+  color: #233e99 !important;
+}
+
+::ng-deep .mat-form-field-label {
+  color: #7f8c8d !important;
+}
+
+/* Estilização do FormArray (Lista de Cidades Adicionadas) */
+form[formGroup="formLocalidade"] {
+  background-color: #f8faff;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px dashed #cbd5e0;
+}
+
+/* Botão "Adicionar Local" */
+.btn-light.rounded-pill {
+  background-color: #ffffff;
+  color: #233e99;
+  border: 1px solid #233e99 !important;
+  font-weight: 600;
+  padding: 8px 25px;
+  transition: all 0.3s ease;
+}
+
+.btn-light.rounded-pill:hover:not(:disabled) {
+  background-color: #e6edff;
+  transform: scale(1.02);
+}
+
+.btn-light.rounded-pill:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Botões de Ação Final (Rodapé) */
+.btn-salvar {
+  background-color: #233e99;
+  border: none;
+  transition: all 0.3s ease;
+  min-width: 160px;
+}
+
+.btn-salvar:hover:not(:disabled) {
+  background-color: #3b59ff;
+  box-shadow: 0 4px 15px rgba(35, 62, 153, 0.3);
+}
+
+.btn-salvar:disabled {
+  background-color: #cbd5e0;
+  cursor: not-allowed;
+}
+
+.text-secondary.fw-medium {
+  color: #7f8c8d !important;
+  font-weight: 600;
+}
+
+/* Validação de duplicidade no Autocomplete */
+mat-option.d-flex span {
+  margin-left: auto;
+}
+
+/* Mensagem de erro customizada para cidades já adicionadas */
+.text-muted.mr-4 {
+  background: #fff5f5;
+  padding: 2px 8px;
+  border-radius: 4px;
+}

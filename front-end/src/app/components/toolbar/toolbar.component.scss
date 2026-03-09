@@ -1,0 +1,60 @@
+.mobiis-navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e6ed;
+  padding: 0.75rem 2rem;
+  box-shadow: 0 2px 10px rgba(35, 62, 153, 0.05); /* Sombra leve com o tom azul */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;    
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.nav-logo {
+  color: #233e99; /* Mobiis Blue Dark */
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.nav-logo strong {
+  font-weight: 800;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #6c757d;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px; /* Botão estilo pílula */
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+/* Efeito de Hover */
+.nav-links a:hover {
+  background-color: #f0f4ff;
+  color: #3b59ff;
+}
+
+/* Estado Ativo (Onde o usuário está) */
+.nav-links a.active {
+  background-color: #233e99; /* Azul da Mobis */
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(35, 62, 153, 0.2);
+}

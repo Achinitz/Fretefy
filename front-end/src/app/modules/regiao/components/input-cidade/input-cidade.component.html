@@ -1,0 +1,25 @@
+    <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Cidade</mat-label>
+    <input type="text"
+            matInput
+            [formControl]="control"
+            [matAutocomplete]="auto"
+            placeholder="Ex: Curitiba">
+
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="exibirCidade" (optionSelected)="alterarCidade()">
+        <mat-option *ngFor="let cidade of listaCidades" [value]="cidade" [disabled]="estaDuplicada(cidade)">
+        {{ cidade.nome }}
+        <span *ngIf="estaDuplicada(cidade)" class="text-muted" style="font-size: 10px;">
+            (Já adicionada)
+        </span>
+        </mat-option>
+    </mat-autocomplete>
+
+    <mat-error *ngIf="control.hasError('cidadeDuplicada')">
+        Esta cidade já foi adicionada à lista.
+    </mat-error>
+
+    <button type="button" matSuffix mat-icon-button (click)="remover.emit()">
+        X
+    </button>
+    </mat-form-field>

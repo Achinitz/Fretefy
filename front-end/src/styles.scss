@@ -1,0 +1,27 @@
+
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+:root {
+  --mobiis-blue-dark: #233e99;    
+  --mobiis-blue-light: #e6edff;   
+  --mobiis-blue-accent: #3b59ff;  
+  --mobiis-text: #1a1a1a;         
+  --mobiis-bg: #f5f7fa;   
+  --mobiis-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;     
+}
+
+
+* {
+    font-family: Nunito Sans,Segoe UI,Helvetica Neue,Arial,sans-serif;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    background-color: #dfe6e9;
+    font-family: var(--mobiis-font-sans);
+    color: #333333 !important;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

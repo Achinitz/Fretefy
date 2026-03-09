@@ -1,0 +1,99 @@
+<div class="container mt-4 px-2">
+<div class="row justify-content-center p-2">
+<div class="card-body bg-white " [formGroup]="regiaoForm">
+
+    <h1 class="font-weight-bold m-3">
+        {{ isEdicao ? 'Editar Região' : 'Cadastrar Nova Região' }}
+    </h1>
+
+    <mat-divider class="mt-3 mb-3"></mat-divider>
+<div class="p-2 px-4">
+
+        <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Digite a Região ou Metrópole</mat-label>
+        
+        <input matInput 
+                [formControl]="asFormControl(regiaoForm.get('nome'))"
+                [matAutocomplete]="auto" 
+                #trigger="matAutocompleteTrigger"
+                (focus)="trigger.openPanel()"
+                placeholder="Ex: Região Sul"
+                (blur)="verificarNomeEscrito()">
+
+                <button *ngIf="buscaRegiaoCtrl.value" 
+                    matSuffix 
+                    mat-icon-button 
+                    aria-label="Clear" 
+                    (click)="regiaoForm.get('nome').setValue(''); $event.stopPropagation()">
+                    <mat-icon>X</mat-icon>
+                </button>
+        
+        <mat-autocomplete #auto="matAutocomplete" 
+                            [displayWith]="exibirNome"
+                            (optionSelected)="onOpcaoSelecionada($event)">
+            <mat-option *ngFor="let item of opcoesFiltradas$ | async" [value]="item">
+            {{ item.nome }}
+            </mat-option>
+        </mat-autocomplete>
+        </mat-form-field>  
+  
+  <div class="px-2" *ngIf="regiaoForm.get('nome').value">
+
+  <h4 class="text-primary font-weight-bold mb-2">Locais da região</h4>
+
+<div formArrayName="cidades">
+  <div *ngFor="let cidadeCtrl of cidades.controls; let i=index">
+          <app-cidade-input 
+        [control]="asFormControl(cidadeCtrl)" 
+        [listaCidades]="(cidadesFiltradas$ | async) || []"
+        (remover)="removerCidade(i)"
+        (alterouCidade)="validaCidadeAlterada()">
+      </app-cidade-input>
+  </div>
+</div>
+
+<form [formGroup]="formLocalidade" (ngSubmit)="adicionarCidade()">
+    <mat-form-field appearance="outline" class="w-100" *ngIf="cidadesFiltradas$ | async as listaCidades">
+    <mat-label>Cidade</mat-label>
+    <input type="text"
+            matInput
+            formControlName="cidadeSelecionada"
+            [matAutocomplete]="autoCidade"
+            placeholder="Ex: Curitiba">
+
+    <mat-autocomplete #autoCidade="matAutocomplete" [displayWith]="exibirCidade">
+        <mat-option *ngFor="let cidade of listaCidades" [value]="cidade" class="d-flex align-items-center " [disabled]="estaDuplicada(cidade)"  >
+        {{ cidade.nome }}
+          <span *ngIf="estaDuplicada(cidade)" class="text-muted mr-4" style="font-size: 0.75rem; color: red !important; font-weight: 600;">
+            (Já adicionada)
+        </span>
+        </mat-option>
+    </mat-autocomplete>
+    </mat-form-field>
+
+    <div class="text-center mt-2">
+    <button type="submit" class="btn btn-light border rounded-pill px-4 shadow-sm" [disabled]="!formLocalidade.get('cidadeSelecionada')?.value">
+        <i class="bi bi-plus-circle"></i> + Adicionar local
+    </button>
+    </div>
+</form>
+
+  <mat-divider class="mt-3 mb-3"></mat-divider>
+
+  <div class="d-flex justify-content-end gap-2 mt-4">
+    <button type="button" class="btn btn-light border-0 rounded-3 px-4 py-2 text-secondary fw-medium" (click)="cancelar()">
+        Cancelar
+    </button>
+
+    <button type="submit" class="btn btn-salvar rounded-3 px-4 py-2 fw-medium text-white" [disabled]="regiaoForm.invalid">
+        {{ isEdicao ? 'Salvar Alterações' : 'Finalizar Cadastro' }}
+    </button>
+  </div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+</div>

@@ -1,0 +1,50 @@
+<div class="dashboard">
+  <header class="dashboard-header">
+    <h1>Painel de Controle</h1>
+    <p>Bem-vindo ao sistema de gestão de fretes e regiões.</p>
+  </header>
+
+  <section class="kpi-container">
+    <div class="card kpi">
+      <div class="card-body">
+        <span class="kpi-label">Total de Regiões</span>
+        <span class="kpi-value">  </span>
+      </div>
+    </div>
+
+    <div class="card kpi">
+      <div class="card-body">
+        <span class="kpi-label">Cidades Atendidas</span>
+        <span class="kpi-value"></span>
+      </div>
+    </div>
+
+    <div class="card kpi status-active">
+      <div class="card-body">
+        <span class="kpi-label">Regiões Ativas</span>
+        <span class="kpi-value"></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="dashboard-content">
+    <div class="recent-activity">
+      <h3>Atividade Recente</h3>
+      <div class="placeholder-table">
+        <p>As últimas atualizações de regiões aparecerão aqui.</p>
+      </div>
+    </div>
+
+    <aside class="quick-actions">
+      <h3>Ações Rápidas</h3>
+      <div class="d-flex gap-4">
+        <button routerLink="/regiao" class="btn btn-primary">
+          Listar Regiões
+        </button>
+        <button routerLink="/regiao/novo" class="btn btn-outline">
+          Cadastrar Nova Região
+        </button>
+      </div>
+    </aside>
+  </div>
+</div>

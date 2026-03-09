@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-secondary">Regiões</h2>
+    <button [routerLink]="['novo']" class="btn btn-outline-primary shadow-sm">
+      <i class="bi bi-plus"></i> + Cadastrar
+    </button>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead class="bg-light">
+          <tr>
+            <th class="border-0 text-uppercase small font-weight-bold">              
+              Nome da região
+            </th>
+            <th class="border-0 text-uppercase small font-weight-bold">Status</th>
+            <th class="border-0 text-uppercase small font-weight-bold text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let regiao of REGIOES_MOCK">
+            <td class="align-middle col-7">
+              <img src="assets/icons/map-pin.svg" alt="Ícone de Editar" width="15" class="ml-2">
+              <span>{{ regiao.nome }}</span>
+            </td>
+            <td class="align-middle col-3">
+              <mat-slide-toggle
+                [checked]="regiao.ativo"
+                (change)="toggleStatus(regiao)"
+                [class.toggle-ativado]="regiao.ativo"
+                [class.toggle-desativado]="!regiao.ativo">
+                {{ regiao.ativo ? 'Ativada' : 'Desativada' }}
+              </mat-slide-toggle>
+            </td>
+            <td class="text-center align-middle col-2">
+              <div class="btn-group d-flex gap-3" role="group">                
+                <button (click)="prepararEdicao(regiao)" class="btn btn-sm btn-outline-primary ml-2" title="Editar Região">
+                  <img src="assets/icons/pencil-square.svg" alt="Ícone de Editar" width="20">
+                </button>
+                <button class="btn btn-sm btn-outline-primary ml-2 bg-success" title="Exportar Excel" (click)="exportarDados()">
+                  <img src="assets/icons/file-excel.svg" alt="Ícone de Editar" width="20">
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>  
