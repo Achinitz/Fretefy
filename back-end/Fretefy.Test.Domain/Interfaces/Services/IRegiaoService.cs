@@ -13,5 +13,7 @@ namespace Fretefy.Test.Domain.Interfaces.Services
         Task AlterarStatus(Guid id);
 
         Task<object> ObterResumoPainel();
+
+        Task Atualizar(Regiao regiao);
     }
 }

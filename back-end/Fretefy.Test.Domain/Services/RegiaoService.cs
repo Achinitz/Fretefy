@@ -59,5 +59,16 @@ namespace Fretefy.Test.Domain.Services
                 cidadesAtendidas = cidades
             };
         }
+
+        public async Task Atualizar(Regiao regiao)
+        {
+            var existente = await _repository.ObterPorId(regiao.Id);
+
+            if (existente == null)
+                throw new Exception("Região não encontrada.");
+            
+            await _repository.Atualizar(regiao);
+        }
+
     }
 }

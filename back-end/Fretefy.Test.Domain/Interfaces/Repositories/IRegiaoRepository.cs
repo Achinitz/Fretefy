@@ -13,6 +13,7 @@ namespace Fretefy.Test.Domain.Interfaces.Repositories
         Task<Regiao> ObterPorNome(string nome);
         Task Salvar(Regiao regiao);
         Task Atualizar(Regiao regiao);
+        Task Editar(Regiao regiao);
 
 
         Task<int> ContarTotalRegioes();

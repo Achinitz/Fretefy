@@ -43,10 +43,20 @@ regioes$: Observable<Regiao[]>;
   },
 ];
 
-  constructor(private regiaoService: RegiaoService, private router: Router, private excelService: ExcelService) {}
+  constructor(private regiaoService: RegiaoService, private router: Router, private excelService: ExcelService) {
+
+  }
 
   ngOnInit() {
     this.regioes$ = null;
+
+    this.regiaoService.listar().subscribe({
+      next: (dados) =>{
+        console.log(dados)
+      },  
+      error: (err) => console.error('Erro ao carregar resumo', err)
+    })
+
   }
 
   prepararEdicao(regiao: any) {    
@@ -57,6 +67,16 @@ regioes$: Observable<Regiao[]>;
 
   toggleStatus(regiao: any) {
     regiao.ativo = !regiao.ativo;
+
+    this.regiaoService.alterarStatus(regiao.id).subscribe({
+      next: (res) =>{
+
+      },
+      error: (err) =>{
+        
+      }
+    })
+
 }
 
 exportarDados(): void { 

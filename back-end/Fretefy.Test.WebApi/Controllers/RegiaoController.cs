@@ -67,5 +67,19 @@ namespace Fretefy.Test.WebApi.Controllers
             return Ok(resumo);
         }
 
+        [HttpPut]
+        public async Task<IActionResult> Editar([FromBody] Regiao regiao)
+        {
+            try
+            {
+                await _regiaoService.Atualizar(regiao);
+                return Ok(new { message = "Região atualizada com sucesso!" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
     }
 }

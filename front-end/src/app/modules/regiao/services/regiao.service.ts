@@ -72,6 +72,10 @@ export class RegiaoService {
     return this.http.post(this.API, regiao);
   }
 
+  editar(regiao: any): Observable<any> {
+    return this.http.put(this.API, regiao);
+  }
+
   alterarStatus(id: string): Observable<any> {    
     return this.http.patch(`${this.API}/${id}/status`, {});
   }

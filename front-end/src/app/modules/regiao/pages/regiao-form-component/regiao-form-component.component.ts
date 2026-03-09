@@ -219,6 +219,22 @@ import { cidadeDuplicadaValidator, minimoUmItemValidator } from '../../validator
         this.regiaoForm.markAsDirty();
       }
 
+      salvar(){
+          // this.regiaoService.salvar(this.regiaoForm.values).subscribe({
+            this.regiaoService.salvar('').subscribe({
+            next: (res) =>{
+
+            },
+            error: (err) =>{
+
+            }
+          })
+      }
+      
+      editar(){
+        
+      }
+
       cancelar() {
 
         this.router.navigate(['/regiao']);

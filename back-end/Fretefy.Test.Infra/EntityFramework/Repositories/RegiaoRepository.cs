@@ -42,6 +42,12 @@ namespace Fretefy.Test.Infra.EntityFramework.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task Editar(Regiao regiao)
+        {            
+            _context.Regiao.Update(regiao);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<Regiao> ObterPorNome(string nome)
         {            
             return await _context.Regiao
