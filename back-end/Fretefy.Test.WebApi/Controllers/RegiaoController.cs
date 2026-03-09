@@ -22,6 +22,7 @@ namespace Fretefy.Test.WebApi.Controllers
         {
             try
             {
+                var regiao = 0;
                 var regioes = await _regiaoService.Listar();
                 return Ok(regioes);
             }
