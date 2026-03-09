@@ -34,6 +34,20 @@ namespace Fretefy.Test.WebApi
 
             services.AddMvc()
                 .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Latest);
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngularApp",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200") // URL padrão do Angular
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
+                    });
+            });
+
+            services.AddControllers();
+
         }
 
         private void ConfigureDomainService(IServiceCollection services)
@@ -54,6 +68,10 @@ namespace Fretefy.Test.WebApi
             }
 
             app.UseRouting();
+
+            app.UseCors("AllowAngularApp");
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
