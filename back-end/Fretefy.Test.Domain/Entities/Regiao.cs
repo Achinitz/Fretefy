@@ -10,14 +10,16 @@ namespace Fretefy.Test.Domain.Entities
             RegiaoCidades = new List<RegiaoCidade>();
         }
 
-        public Regiao(int id, string nome, bool status) : this()
+        public Regiao(int idRegiao, string nome, bool status) : this()
         {
-            Id = id;
+            Id = Guid.NewGuid();
             Nome = nome;
+            IdRegiao = idRegiao.ToString();
             Status = status;
         }
 
-        public int Id { get; set; }
+        public Guid Id { get; set; }
+        public string IdRegiao { get; set; }
         public string Nome { get; set; }
         public bool Status { get; set; }
 

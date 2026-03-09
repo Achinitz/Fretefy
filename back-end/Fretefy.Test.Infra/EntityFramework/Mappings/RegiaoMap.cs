@@ -12,6 +12,9 @@ namespace Fretefy.Test.Infra.EntityFramework.Mappings
 
             builder.HasKey(p => p.Id);
 
+            builder.Property(p => p.IdRegiao)
+                   .HasMaxLength(50);
+
             builder.Property(p => p.Nome)
                    .HasMaxLength(100)
                    .IsRequired();

@@ -3,14 +3,16 @@ using System;
 using Fretefy.Test.Infra.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Fretefy.Test.Infra.EntityFramework.Migrations
 {
     [DbContext(typeof(TestDbContext))]
-    partial class TestDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260309115542_AdicionarRegiao")]
+    partial class AdicionarRegiao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,7 +49,6 @@ namespace Fretefy.Test.Infra.EntityFramework.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("IdRegiao")
-                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")

@@ -2,35 +2,31 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class RegiaoService {
-  private readonly URL_BASE = 'https://servicodados.ibge.gov.br/api/v1/localidades';
 
-  // --- GERENCIAMENTO DE ESTADO (State Management) ---
-  // BehaviorSubject privado para evitar manipulação externa direta
+
+  private readonly URL_IBGE = environment.apiIbgeUrl;
+  private readonly API = environment.apiUrl;
+
   private regiaoEdicaoSource = new BehaviorSubject<any>(null);
-  
-  // Observable público para os componentes assinarem
   regiaoEdicao$ = this.regiaoEdicaoSource.asObservable();
 
   constructor(private http: HttpClient) {}
 
-  /** Envia os dados da lista para o formulário de edição */
   setRegiaoParaEditar(regiao: any): void {
     this.regiaoEdicaoSource.next(regiao);
   }
 
-  /** Limpa o estado para quando for um novo cadastro */
   limparDadosEdicao(): void {
     this.regiaoEdicaoSource.next(null);
   }
 
-  // --- CHAMADAS DE API (Data Services) ---
-
-  listarOpcoesGeograficas(): Observable<{id: any, nome: string}[]> {
-    const regioes$ = this.http.get<any[]>(`${this.URL_BASE}/regioes`);
-    const metropoles$ = this.http.get<any[]>(`${this.URL_BASE}/regioes-metropolitanas`);
+  listarOpcoesGeograficas(): Observable<{id: any, nome: string}[]> {    
+    const regioes$ = this.http.get<any[]>(`${this.URL_IBGE}/regioes`);
+    const metropoles$ = this.http.get<any[]>(`${this.URL_IBGE}/regioes-metropolitanas`);
 
     return forkJoin([regioes$, metropoles$]).pipe(
       map(([regioes, metropoles]) => {
@@ -49,10 +45,10 @@ export class RegiaoService {
     );
   }
 
-  buscarCidades(id: number): Observable<any[]> {
+  buscarCidades(id: number): Observable<any[]> {    
     const endpoint = id >= 1 && id <= 5 
-      ? `${this.URL_BASE}/regioes/${id}/municipios` 
-      : `${this.URL_BASE}/regioes-metropolitanas/${id}`;
+      ? `${this.URL_IBGE}/regioes/${id}/municipios` 
+      : `${this.URL_IBGE}/regioes-metropolitanas/${id}`;
 
     return this.http.get<any>(endpoint).pipe(
       map((res: any) => {
@@ -67,4 +63,20 @@ export class RegiaoService {
       })
     );
   }
+
+  listar(): Observable<any[]> {
+    return this.http.get<any[]>(this.API);
+  }
+
+  salvar(regiao: any): Observable<any> {
+    return this.http.post(this.API, regiao);
+  }
+
+  alterarStatus(id: string): Observable<any> {    
+    return this.http.patch(`${this.API}/${id}/status`, {});
+  }
+
+  obterResumoPainel(): Observable<any> {
+    return this.http.get<any>(`${this.API}/resumo`);
+  }   
 }

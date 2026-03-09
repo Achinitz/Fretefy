@@ -10,6 +10,8 @@ namespace Fretefy.Test.Infra.EntityFramework.Mappings
         {
             builder.ToTable("Cidade");
             builder.HasKey(p => p.Id);
+            builder.Property(p => p.IdCidade)
+                   .IsRequired();
             builder.Property(p => p.Nome).HasMaxLength(1024).IsRequired();
             builder.Property(p => p.UF).HasMaxLength(2).IsRequired();
             builder.HasMany(p => p.RegiaoCidades)

@@ -30,7 +30,7 @@
                 (change)="toggleStatus(regiao)"
                 [class.toggle-ativado]="regiao.ativo"
                 [class.toggle-desativado]="!regiao.ativo">
-                {{ regiao.ativo ? 'Ativada' : 'Desativada' }}
+                {{ regiao.ativo == 1 ? 'Ativada' : 'Desativada' }}
               </mat-slide-toggle>
             </td>
             <td class="text-center align-middle col-2">

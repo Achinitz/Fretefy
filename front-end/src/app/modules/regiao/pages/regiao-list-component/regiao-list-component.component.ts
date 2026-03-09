@@ -18,7 +18,7 @@ regioes$: Observable<Regiao[]>;
   {
     id: 1,
     nome: 'Região Norte',
-    ativo: true,
+    ativo: 1,
     cidades: [
       { id: 1100015, nome: 'Alta Floresta D\'Oeste', uf: 'RO' },
       { id: 1100023, nome: 'Ariquemes', uf: 'RO' }
@@ -27,7 +27,7 @@ regioes$: Observable<Regiao[]>;
   {
     id: '05501',
     nome: 'Região Metropolitana de Curitiba',
-    ativo: true,
+    ativo: 1,
     cidades: [
       { id: 4106902, nome: 'Curitiba', uf: 'PR' },
       { id: 4125506, nome: 'São José dos Pinhais', uf: 'PR' }
@@ -36,7 +36,7 @@ regioes$: Observable<Regiao[]>;
   {
     id: 2,
     nome: 'Região Nordeste',
-    ativo: false,
+    ativo: 0,
     cidades: [
       { id: 2111300, nome: 'São Luís', uf: 'MA' }
     ]
